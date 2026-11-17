@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 248 40" role="img" aria-labelledby="logoTitle">
+  <title id="logoTitle">Wikkivisio</title>
+  <rect x="0" y="4" width="32" height="32" rx="8" fill="#14241e"/>
+  <path d="M7.6 13.2 12.4 26.4 16.2 18.2 20 26.4 24.8 13.2" fill="none" stroke="#def56b" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="44" y="28" fill="#14241e" font-family="Georgia, 'Iowan Old Style', 'Palatino Linotype', Palatino, serif" font-size="24" font-weight="600" letter-spacing="-0.6">Wikkivisio</text>
+</svg>
