@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState, type FormEvent, type ReactNode, type RefObject } from 'react'
-import { contactEmail, contactPhone, placeholders } from '../content'
+import { contactEmail, contactPhone, serviceArea } from '../content'
 import {
   WEB3FORMS_CALLBACK_SUBJECT,
   WEB3FORMS_FROM_NAME,
@@ -94,10 +94,8 @@ export function Contact() {
             </li>
           </ul>
 
-          <p className="mt-4 text-sm text-paper/70">
-            <span data-placeholder="true">Toiminta-alue: {placeholders.area}</span>{' '}
-            <span className="rounded-full bg-lime/15 px-2 py-0.5 text-[11px] font-semibold text-lime">Paikkamerkki</span>
-            <span className="sr-only">. {placeholders.note}</span>
+          <p className="mt-4 text-sm text-paper/75">
+            Toiminta-alue: {serviceArea}. Uudistus hoituu etänä, joten sijaintisi Suomessa ei rajoita työtä.
           </p>
 
           <div id="lomake" className="mt-8 scroll-mt-28 rounded-3xl bg-paper p-5 text-ink sm:p-8">

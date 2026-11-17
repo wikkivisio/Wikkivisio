@@ -21,6 +21,7 @@ export function Hero() {
           <p className="mt-6 max-w-xl text-lg leading-relaxed text-paper/80">
             Wikkivisio uudistaa nykyisen verkkosivusi tekoälyn avulla. Edullisesti,
             nopeasti ja niin, että toiveesi ohjaavat lopputulosta. Et aloita alusta.
+            Työ hoituu etänä koko Suomessa.
           </p>
           <div className="mt-8 flex flex-col gap-3 sm:flex-row">
             <a

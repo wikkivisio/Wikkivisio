@@ -156,8 +156,5 @@ export const contactPhone = {
   whatsapp: '358415402830',
 } as const
 
-/** Alue ei ole vielä vahvistettu yhteystieto. */
-export const placeholders = {
-  area: 'Suomi',
-  note: 'Alue on paikkamerkki. Vaihda se ennen julkaisua.',
-} as const
+/** Palvelu kattaa koko Suomen ja hoituu etänä. */
+export const serviceArea = 'Koko Suomi'

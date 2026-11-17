@@ -2,7 +2,7 @@
 
 Suomenkielinen markkinointisivu startupille, joka uudistaa asiakkaiden nykyisiä verkkosivuja tekoälyn avulla. Kohderyhmä on suomalaiset pienyritykset, yhdistykset ja yksinyrittäjät.
 
-Sivu on Vite + React -sovellus. Yhteydenottolomake ja soittopyyntö lähettävät viestit [Web3Formsin](https://web3forms.com) kautta osoitteeseen wikkivisio@gmail.com. Puhelinnumero on `contactPhone` tiedostossa `src/content.ts`. Alue on yhä paikkamerkki.
+Sivu on Vite + React -sovellus. Yhteydenottolomake ja soittopyyntö lähettävät viestit [Web3Formsin](https://web3forms.com) kautta osoitteeseen wikkivisio@gmail.com. Puhelinnumero on `contactPhone` tiedostossa `src/content.ts`. Toiminta-alue on koko Suomi, ja työ hoituu etänä.
 
 Hinnat on merkitty esimerkkihinnoiksi. Ne eivät ole hinnasto eivätkä tarjous.
 

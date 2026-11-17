@@ -1,4 +1,4 @@
-import { contactEmail, contactPhone, navItems, placeholders } from '../content'
+import { contactEmail, contactPhone, navItems, serviceArea } from '../content'
 import { Logo } from './Logo'
 
 const year = new Date().getFullYear()
@@ -47,12 +47,11 @@ export function Footer() {
                 WhatsApp
               </a>
             </li>
-            <li data-placeholder="true">
-              {placeholders.area}{' '}
-              <span className="text-clay">· paikkamerkki</span>
-            </li>
+            <li>{serviceArea}</li>
           </ul>
-          <p className="mt-3 text-sm leading-relaxed text-moss">{placeholders.note}</p>
+          <p className="mt-3 text-sm leading-relaxed text-moss">
+            Uudistus hoituu etänä koko Suomessa.
+          </p>
         </div>
       </div>
       <div className="border-t border-line">
