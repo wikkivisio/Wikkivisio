@@ -2,10 +2,13 @@
 export const WEB3FORMS_ENDPOINT = 'https://api.web3forms.com/submit'
 
 /**
- * PAIKKAMERKKI. Ei ole toimiva avain.
- * Korvaa se ympäristömuuttujalla VITE_WEB3FORMS_KEY (katso .env.example).
- * Avain luodaan osoitteessa https://web3forms.com sähköpostille wikkivisio@gmail.com.
+ * Julkinen oletusavain. Web3Forms on tarkoitettu kutsuttavaksi selaimesta,
+ * joten avain saa olla paketissa. Sähköposti wikkivisio@gmail.com on sidottu tähän avaimeen.
+ * VITE_WEB3FORMS_KEY korvaa oletuksen, jos se on asetettu.
  */
+export const WEB3FORMS_ACCESS_KEY = '3945c8cd-ab8d-4740-806a-e00ff3ea12b0'
+
+/** Jos ympäristömuuttujaan jää tämä teksti, käytetään oletusavainta. */
 export const WEB3FORMS_KEY_PLACEHOLDER = 'PAIKKAMERKKI_VAIHDA_VITE_WEB3FORMS_KEY'
 
 export const WEB3FORMS_SUBJECT = 'Uusi yhteydenotto Wikkivisio-sivulta'
@@ -14,10 +17,11 @@ export const WEB3FORMS_FROM_NAME = 'Wikkivisio'
 
 export function web3formsAccessKey() {
   const raw = import.meta.env.VITE_WEB3FORMS_KEY
-  if (typeof raw !== 'string') return WEB3FORMS_KEY_PLACEHOLDER
-  const key = raw.trim()
-  if (!key || key === WEB3FORMS_KEY_PLACEHOLDER) return WEB3FORMS_KEY_PLACEHOLDER
-  return key
+  if (typeof raw === 'string') {
+    const key = raw.trim()
+    if (key && key !== WEB3FORMS_KEY_PLACEHOLDER) return key
+  }
+  return WEB3FORMS_ACCESS_KEY
 }
 
 export function isWeb3formsKeyConfigured(key = web3formsAccessKey()) {
