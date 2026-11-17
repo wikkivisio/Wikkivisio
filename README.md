@@ -13,7 +13,9 @@ npm install
 npm run dev
 ```
 
-Kehityspalvelin: [http://127.0.0.1:43123](http://127.0.0.1:43123)
+Kehityspalvelin: [http://127.0.0.1:43123/Wikkivisio/](http://127.0.0.1:43123/Wikkivisio/)
+
+Julkinen sivusto: [https://wikkivisio.github.io/Wikkivisio/](https://wikkivisio.github.io/Wikkivisio/)
 
 ## Tuotantoversio
 
