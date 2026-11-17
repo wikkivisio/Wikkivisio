@@ -31,3 +31,7 @@ Lomake käyttää oletusavainta tiedostossa `src/web3forms.ts`. Julkaistu staatt
 Jos avain halutaan vaihtaa, aseta `VITE_WEB3FORMS_KEY` tiedostoon `.env` (mallina `.env.example`) ja käynnistä kehityspalvelin uudelleen. Älä commitoi `.env`-tiedostoa.
 
 Logo ja profiilikuvat ovat kansiossa `brand/`. Sivusto käyttää samaa merkkiä (`public/favicon.svg`, `src/components/Logo.tsx`).
+
+## Tekijänoikeus
+
+© 2026 Wikkivisio. Kaikki oikeudet pidätetään. All rights reserved. Tämän ohjelmiston ja sivuston kopioiminen, muokkaaminen, jakelu tai käyttö ilman Wikkivision kirjallista lupaa on kielletty. Lisenssi on tiedostossa `LICENSE`. Tämä ei ole avoimen lähdekoodin lisenssi.

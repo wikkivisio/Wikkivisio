@@ -1,8 +1,6 @@
 import { contactEmail, navItems, serviceArea } from '../content'
 import { Logo } from './Logo'
 
-const year = new Date().getFullYear()
-
 export function Footer() {
   return (
     <footer className="border-t border-white/10 text-paper">
@@ -42,7 +40,9 @@ export function Footer() {
         </div>
       </div>
       <div className="border-t border-white/10">
-        <p className="mx-auto w-full max-w-6xl px-5 py-5 text-sm text-paper/60 md:px-8">© {year} Wikkivisio</p>
+        <p className="mx-auto w-full max-w-6xl px-5 py-5 text-sm text-paper/60 md:px-8">
+          © 2026 Wikkivisio. Kaikki oikeudet pidätetään.
+        </p>
       </div>
     </footer>
   )
