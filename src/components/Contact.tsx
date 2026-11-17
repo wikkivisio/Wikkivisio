@@ -1,17 +1,13 @@
-import { useState, type FormEvent } from 'react'
-import { placeholders } from '../content'
+import { useEffect, useRef, useState, type FormEvent } from 'react'
+import { contactEmail, placeholders } from '../content'
+import {
+  WEB3FORMS_FROM_NAME,
+  WEB3FORMS_SUBJECT,
+  isWeb3formsKeyConfigured,
+  submitToWeb3Forms,
+  web3formsAccessKey,
+} from '../web3forms'
 import { SectionHeading } from './SectionHeading'
-
-/**
- * YHTEYDENOTTOLOMAKE — EI KYTKETTY.
- *
- * Tämä on pelkkä käyttöliittymä. handleSubmit estää lähetyksen eikä kutsu
- * rajapintaa. Ennen julkaisua:
- * 1. Korvaa handleSubmit kutsulla omaan backend-reittiin tai lomakepalveluun.
- * 2. Älä näytä viestiä, joka väittää viestin lähteneen perille, ennen kuin lähetys onnistuu.
- * 3. Vaihda paikkamerkkiyhteystiedot tiedostossa src/content.ts (placeholders).
- * 4. Kerro tietosuojasta, kun vastaanottaja on tiedossa.
- */
 
 type Fields = {
   name: string
@@ -23,6 +19,12 @@ type Fields = {
 
 type Errors = Partial<Record<keyof Fields, string>>
 
+type SubmitState =
+  | { kind: 'idle' }
+  | { kind: 'loading' }
+  | { kind: 'success' }
+  | { kind: 'error'; message: string }
+
 const empty: Fields = {
   name: '',
   email: '',
@@ -33,29 +35,89 @@ const empty: Fields = {
 
 const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
 
+const missingKeyMessage =
+  'Lähetys ei ole vielä käytössä, koska Web3Forms-avain puuttuu. Kirjoita sillä välin osoitteeseen wikkivisio@gmail.com.'
+
+const sendErrorMessage =
+  'Viestiä ei voitu lähettää. Yritä uudelleen tai kirjoita osoitteeseen wikkivisio@gmail.com.'
+
+const networkErrorMessage =
+  'Yhteys palveluun epäonnistui. Yritä hetken päästä uudelleen tai lähetä viesti osoitteeseen wikkivisio@gmail.com.'
+
 export function Contact() {
   const [fields, setFields] = useState<Fields>(empty)
   const [errors, setErrors] = useState<Errors>({})
-  const [previewNote, setPreviewNote] = useState(false)
+  const [state, setState] = useState<SubmitState>({ kind: 'idle' })
+  const botcheckRef = useRef<HTMLInputElement>(null)
+  const statusRef = useRef<HTMLParagraphElement>(null)
 
   const set = (key: keyof Fields) => (value: string) => {
     setFields((current) => ({ ...current, [key]: value }))
     setErrors((current) => ({ ...current, [key]: undefined }))
   }
 
+  useEffect(() => {
+    if (state.kind === 'success' || state.kind === 'error') {
+      statusRef.current?.focus()
+    }
+  }, [state])
+
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault()
+    if (state.kind === 'loading') return
+
     const next = validate(fields)
     setErrors(next)
-    setPreviewNote(false)
     const firstInvalid = (Object.keys(next) as Array<keyof Fields>).find((key) => next[key])
     if (firstInvalid) {
+      setState({ kind: 'idle' })
       document.getElementById(fieldId(firstInvalid))?.focus()
       return
     }
-    // Ei verkkoon lähetystä. Tiedot jäävät tähän komponentin tilaan.
-    setPreviewNote(true)
+
+    const accessKey = web3formsAccessKey()
+    if (!isWeb3formsKeyConfigured(accessKey)) {
+      setState({ kind: 'error', message: missingKeyMessage })
+      return
+    }
+
+    void send(accessKey)
   }
+
+  const send = async (accessKey: string) => {
+    setState({ kind: 'loading' })
+    try {
+      const result = await submitToWeb3Forms({
+        access_key: accessKey,
+        subject: WEB3FORMS_SUBJECT,
+        from_name: WEB3FORMS_FROM_NAME,
+        botcheck: botcheckRef.current?.checked === true,
+        name: fields.name.trim(),
+        email: fields.email.trim(),
+        phone: fields.phone.trim(),
+        sivusto: fields.site.trim(),
+        toiveet: fields.wishes.trim(),
+      })
+      if (!result.ok) {
+        setState({ kind: 'error', message: sendErrorMessage })
+        return
+      }
+      setFields(empty)
+      if (botcheckRef.current) botcheckRef.current.checked = false
+      setState({ kind: 'success' })
+    } catch {
+      setState({ kind: 'error', message: networkErrorMessage })
+    }
+  }
+
+  const statusText =
+    state.kind === 'loading'
+      ? 'Lähetetään viestiä…'
+      : state.kind === 'success'
+        ? 'Kiitos. Viestisi lähti perille. Palaamme asiaan sähköpostitse.'
+        : state.kind === 'error'
+          ? state.message
+          : ''
 
   return (
     <section id="yhteys" className="on-dark scroll-mt-24 bg-spruce py-20 text-paper md:py-28" aria-labelledby="yhteys-otsikko">
@@ -69,7 +131,14 @@ export function Contact() {
           <div className="mt-8 rounded-2xl border border-paper/15 p-5">
             <p className="text-sm font-semibold text-lime">Yhteystiedot</p>
             <dl className="mt-4 space-y-4">
-              <PlaceholderRow label="Sähköposti" value={placeholders.email} />
+              <div>
+                <dt className="text-xs font-medium tracking-wide text-paper/60 uppercase">Sähköposti</dt>
+                <dd className="mt-1">
+                  <a className="text-base underline decoration-paper/30 underline-offset-4 hover:decoration-lime" href={`mailto:${contactEmail}`}>
+                    {contactEmail}
+                  </a>
+                </dd>
+              </div>
               <PlaceholderRow label="Puhelin" value={placeholders.phone} />
               <PlaceholderRow label="Alue" value={placeholders.area} />
             </dl>
@@ -81,13 +150,27 @@ export function Contact() {
           className="rounded-3xl bg-paper p-5 text-ink sm:p-8 lg:col-span-7"
           onSubmit={handleSubmit}
           noValidate
+          aria-busy={state.kind === 'loading'}
         >
           <p className="text-sm leading-relaxed text-moss">
-            Esikatselu: lomaketta ei ole vielä kytketty, eikä tietoja lähetetä eteenpäin.
+            Täytä tiedot, niin viesti lähtee sähköpostiimme.
           </p>
+          <div hidden>
+            <label>
+              Älä täytä tätä kenttää
+              <input
+                ref={botcheckRef}
+                type="checkbox"
+                name="botcheck"
+                tabIndex={-1}
+                autoComplete="off"
+              />
+            </label>
+          </div>
           <div className="mt-5 grid gap-4 sm:grid-cols-2">
             <Field
               id="contact-name"
+              name="name"
               label="Nimi"
               required
               autoComplete="name"
@@ -97,6 +180,7 @@ export function Contact() {
             />
             <Field
               id="contact-email"
+              name="email"
               label="Sähköposti"
               type="email"
               required
@@ -107,6 +191,7 @@ export function Contact() {
             />
             <Field
               id="contact-phone"
+              name="phone"
               label="Puhelin"
               type="tel"
               autoComplete="tel"
@@ -117,6 +202,7 @@ export function Contact() {
             />
             <Field
               id="contact-site"
+              name="sivusto"
               label="Nykyisen sivuston osoite"
               required
               autoComplete="url"
@@ -129,6 +215,7 @@ export function Contact() {
           <div className="mt-4">
             <Field
               id="contact-wishes"
+              name="toiveet"
               label="Mitä toivot uudistukselta"
               required
               multiline
@@ -145,18 +232,29 @@ export function Contact() {
             </p>
           ) : null}
 
-          {previewNote ? (
-            <p role="status" className="mt-4 rounded-xl bg-sand px-4 py-3 text-sm leading-relaxed text-ink">
-              Viestiä ei lähetetty. Tiedot jäivät selaimeen, koska lomaketta ei ole kytketty
-              vastaanottajaan. Tämä on käyttöliittymän esikatselu.
+          {state.kind !== 'idle' ? (
+            <p
+              ref={statusRef}
+              tabIndex={-1}
+              role={state.kind === 'error' ? 'alert' : 'status'}
+              className={
+                state.kind === 'error'
+                  ? 'mt-4 rounded-xl bg-[#f8efe6] px-4 py-3 text-sm leading-relaxed text-clay outline-none'
+                  : state.kind === 'success'
+                    ? 'mt-4 rounded-xl bg-canopy/10 px-4 py-3 text-sm leading-relaxed text-ink outline-none'
+                    : 'mt-4 text-sm text-moss outline-none'
+              }
+            >
+              {statusText}
             </p>
           ) : null}
 
           <button
             type="submit"
-            className="mt-6 inline-flex min-h-12 w-full items-center justify-center rounded-full bg-ink px-5 text-[15px] font-semibold text-paper hover:bg-canopy sm:w-auto"
+            disabled={state.kind === 'loading'}
+            className="mt-6 inline-flex min-h-12 w-full items-center justify-center rounded-full bg-ink px-5 text-[15px] font-semibold text-paper hover:bg-canopy disabled:cursor-wait disabled:opacity-70 sm:w-auto"
           >
-            Lähetä arviointipyyntö
+            {state.kind === 'loading' ? 'Lähetetään…' : 'Lähetä arviointipyyntö'}
           </button>
         </form>
       </div>
@@ -182,6 +280,7 @@ function PlaceholderRow({ label, value }: { label: string; value: string }) {
 
 function Field({
   id,
+  name,
   label,
   value,
   onChange,
@@ -194,6 +293,7 @@ function Field({
   multiline = false,
 }: {
   id: string
+  name: string
   label: string
   value: string
   onChange: (value: string) => void
@@ -225,7 +325,7 @@ function Field({
       {multiline ? (
         <textarea
           id={id}
-          name={id}
+          name={name}
           rows={5}
           required={required}
           value={value}
@@ -238,7 +338,7 @@ function Field({
       ) : (
         <input
           id={id}
-          name={id}
+          name={name}
           type={type}
           required={required}
           autoComplete={autoComplete}

@@ -144,10 +144,11 @@ export const faqs = [
   },
 ] as const
 
-/** Vaihda nämä oikeisiin tietoihin ennen julkaisua. Ne eivät ole toimivia yhteystietoja. */
+export const contactEmail = 'wikkivisio@gmail.com'
+
+/** Puhelin ja alue eivät ole vielä oikeita yhteystietoja. */
 export const placeholders = {
-  email: 'hei@wikkivisio.fi',
   phone: '+358 40 000 0000',
   area: 'Suomi',
-  note: 'Paikkamerkki. Vaihda oikea tieto ennen julkaisua.',
+  note: 'Puhelin ja alue ovat paikkamerkkejä. Vaihda ne ennen julkaisua.',
 } as const

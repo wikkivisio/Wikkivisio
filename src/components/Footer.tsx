@@ -1,4 +1,4 @@
-import { navItems, placeholders } from '../content'
+import { contactEmail, navItems, placeholders } from '../content'
 import { Logo } from './Logo'
 
 const year = new Date().getFullYear()
@@ -29,9 +29,10 @@ export function Footer() {
         <div>
           <p className="text-sm font-semibold">Yhteystiedot</p>
           <ul className="mt-3 space-y-2 text-sm text-moss">
-            <li data-placeholder="true">
-              {placeholders.email}{' '}
-              <span className="text-clay">· paikkamerkki</span>
+            <li>
+              <a className="hover:text-ink" href={`mailto:${contactEmail}`}>
+                {contactEmail}
+              </a>
             </li>
             <li data-placeholder="true">
               {placeholders.phone}{' '}
