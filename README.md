@@ -28,4 +28,4 @@ Lomake käyttää oletusavainta tiedostossa `src/web3forms.ts`. Julkaistu staatt
 
 Jos avain halutaan vaihtaa, aseta `VITE_WEB3FORMS_KEY` tiedostoon `.env` (mallina `.env.example`) ja käynnistä kehityspalvelin uudelleen. Älä commitoi `.env`-tiedostoa.
 
-Logo on tiedostossa `public/logo.svg` ja komponentissa `src/components/Logo.tsx`.
+Logo ja profiilikuvat ovat kansiossa `brand/`. Sivusto käyttää samaa merkkiä (`public/favicon.svg`, `src/components/Logo.tsx`).
