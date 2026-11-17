@@ -3,7 +3,7 @@ import { BrowserChrome, NewSite, OldSite } from './Mocks'
 
 export function Hero() {
   return (
-    <section id="alku" className="on-dark relative overflow-hidden bg-spruce text-paper">
+    <section id="alku" className="on-dark relative overflow-hidden bg-black/35 text-paper">
       <div className="pointer-events-none absolute inset-0" aria-hidden="true">
         <div className="absolute -top-24 right-[-10%] h-[420px] w-[420px] rounded-full bg-lime/10 blur-3xl" />
         <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(244,240,230,0.05)_1px,transparent_1px),linear-gradient(to_bottom,rgba(244,240,230,0.05)_1px,transparent_1px)] bg-[size:76px_76px] [mask-image:radial-gradient(ellipse_at_80%_0%,black,transparent_68%)]" />
@@ -11,9 +11,7 @@ export function Hero() {
 
       <div className="relative mx-auto grid w-full max-w-6xl items-center gap-12 px-5 pt-12 pb-10 md:px-8 md:pt-16 lg:grid-cols-2 lg:gap-8 lg:pt-20 lg:pb-14">
         <div>
-          <p className="text-sm font-semibold tracking-wide text-lime">
-            Verkkosivujen uudistus pienille toimijoille
-          </p>
+          <p className="text-sm font-semibold tracking-wide text-lime">Porista koko Suomeen</p>
           <h1 className="mt-4 font-display text-[clamp(2.45rem,6.4vw,4.7rem)] leading-[0.98] font-medium tracking-[-0.035em] text-balance">
             Uudistetaan se sivu,{' '}
             <span className="text-lime italic">joka sinulla jo on.</span>
@@ -28,7 +26,7 @@ export function Hero() {
               href="#yhteys"
               className="inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-full bg-lime px-5 text-[15px] font-semibold text-ink hover:bg-lime-deep sm:w-auto"
             >
-              Pyydä ilmainen arvio
+              Ota rohkeasti yhteyttä
               <ArrowIcon />
             </a>
             <a

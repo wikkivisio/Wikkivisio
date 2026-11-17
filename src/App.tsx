@@ -5,17 +5,19 @@ import { Faq } from './components/Faq'
 import { Footer } from './components/Footer'
 import { Header } from './components/Header'
 import { Hero } from './components/Hero'
+import { PoriBackdrop } from './components/PoriBackdrop'
 import { Pricing } from './components/Pricing'
 import { Steps } from './components/Steps'
 
 export default function App() {
   return (
     <>
+      <PoriBackdrop />
       <a className="skip-link" href="#sisalto">
         Siirry sisältöön
       </a>
       <Header />
-      <main id="sisalto" tabIndex={-1} className="outline-none">
+      <main id="sisalto" tabIndex={-1} className="relative z-10 outline-none">
         <Hero />
         <Steps />
         <Benefits />

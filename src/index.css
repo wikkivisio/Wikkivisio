@@ -6,17 +6,17 @@
 @theme {
   --font-sans: 'Outfit Variable', 'Avenir Next', 'Segoe UI', sans-serif;
   --font-display: 'Fraunces Variable', 'Iowan Old Style', Georgia, serif;
-  --color-ink: #14241e;
-  --color-moss: #3e5148;
-  --color-paper: #f4f0e6;
-  --color-sand: #e7e1d4;
-  --color-card: #fffcf8;
-  --color-spruce: #0e261f;
-  --color-canopy: #1b6349;
-  --color-lime: #def56b;
-  --color-lime-deep: #d0ea4c;
-  --color-clay: #9d4524;
-  --color-line: #ddd6c8;
+  --color-ink: #141414;
+  --color-moss: #5c5852;
+  --color-paper: #f6f3ec;
+  --color-sand: #1a1a1a;
+  --color-card: #141414;
+  --color-spruce: #0c0c0c;
+  --color-canopy: #c8102e;
+  --color-lime: #f2b705;
+  --color-lime-deep: #d9a304;
+  --color-clay: #9d1c2e;
+  --color-line: rgba(242, 183, 5, 0.28);
 }
 
 html {
@@ -27,8 +27,8 @@ html {
 
 body {
   margin: 0;
-  background: var(--color-paper);
-  color: var(--color-ink);
+  background: #0c0c0c;
+  color: #f6f3ec;
   font-family: var(--font-sans);
   font-optical-sizing: auto;
   text-rendering: optimizeLegibility;
@@ -87,6 +87,14 @@ summary::-webkit-details-marker {
 
 summary {
   list-style: none;
+}
+
+.pori-slow {
+  transform: translate3d(0, var(--pori-slow, 0px), 0);
+}
+
+.pori-mid {
+  transform: translate3d(0, calc(var(--pori-mid, 0px) * -0.4), 0);
 }
 
 .compare-range {

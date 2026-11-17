@@ -8,17 +8,11 @@ type SectionHeadingProps = {
   id?: string
 }
 
-export function SectionHeading({
-  eyebrow,
-  title,
-  children,
-  tone = 'light',
-  id,
-}: SectionHeadingProps) {
+export function SectionHeading({ eyebrow, title, children, id }: SectionHeadingProps) {
   return (
     <div className="max-w-2xl">
       <p
-        className={`text-sm font-semibold tracking-wide ${tone === 'dark' ? 'text-lime' : 'text-canopy'}`}
+        className="text-sm font-semibold tracking-wide text-lime"
       >
         {eyebrow}
       </p>
@@ -30,7 +24,7 @@ export function SectionHeading({
       </h2>
       {children ? (
         <p
-          className={`mt-4 text-lg leading-relaxed ${tone === 'dark' ? 'text-paper/80' : 'text-moss'}`}
+          className="mt-4 text-lg leading-relaxed text-paper/80"
         >
           {children}
         </p>

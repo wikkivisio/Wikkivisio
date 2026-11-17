@@ -3,19 +3,10 @@ import { navItems } from '../content'
 import { Logo } from './Logo'
 
 export function Header() {
-  const [scrolled, setScrolled] = useState(false)
   const [open, setOpen] = useState(false)
   const buttonRef = useRef<HTMLButtonElement>(null)
   const panelRef = useRef<HTMLDivElement>(null)
   const menuId = useId()
-  const solid = scrolled || open
-
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 8)
-    onScroll()
-    window.addEventListener('scroll', onScroll, { passive: true })
-    return () => window.removeEventListener('scroll', onScroll)
-  }, [])
 
   useEffect(() => {
     if (!open) return
@@ -63,11 +54,11 @@ export function Header() {
 
   return (
     <header
-      className={`sticky top-0 z-50 ${solid ? 'border-b border-line bg-paper/92 backdrop-blur-md' : 'on-dark border-b border-transparent bg-spruce'}`}
+      className="on-dark sticky top-0 z-50 border-b border-white/10 bg-black/75 backdrop-blur-md"
     >
       <div className="mx-auto flex w-full max-w-6xl items-center justify-between gap-3 px-5 py-3 md:px-8">
         <a href="#alku" className="rounded-md" onClick={close}>
-          <Logo tone={solid ? 'dark' : 'light'} />
+          <Logo tone="light" />
         </a>
 
         <nav className="hidden items-center gap-6 lg:flex" aria-label="Sivun osiot">
@@ -75,7 +66,7 @@ export function Header() {
             <a
               key={item.href}
               href={item.href}
-              className={`text-sm font-medium ${solid ? 'text-ink hover:text-canopy' : 'text-paper/90 hover:text-white'}`}
+              className="text-sm font-medium text-paper/90 hover:text-lime"
             >
               {item.label}
             </a>
@@ -87,12 +78,12 @@ export function Header() {
             href="#yhteys"
             className="hidden min-h-11 items-center rounded-full bg-lime px-4 text-sm font-semibold text-ink hover:bg-lime-deep sm:inline-flex"
           >
-            Pyydä arvio
+            Ota rohkeasti yhteyttä
           </a>
           <button
             ref={buttonRef}
             type="button"
-            className={`inline-flex h-11 w-11 items-center justify-center rounded-full lg:hidden ${solid ? 'text-ink' : 'text-paper'}`}
+            className="inline-flex h-11 w-11 items-center justify-center rounded-full text-paper lg:hidden"
             aria-expanded={open}
             aria-controls={menuId}
             aria-label={open ? 'Sulje valikko' : 'Avaa valikko'}
@@ -107,14 +98,14 @@ export function Header() {
         <div
           id={menuId}
           ref={panelRef}
-          className="min-h-[calc(100dvh-4.25rem)] border-t border-line bg-paper lg:hidden"
+          className="min-h-[calc(100dvh-4.25rem)] border-t border-white/10 bg-[#0c0c0c] text-paper lg:hidden"
         >
           <nav className="mx-auto flex w-full max-w-6xl flex-col px-5 py-3" aria-label="Mobiilivalikko">
             {navItems.map((item) => (
               <a
                 key={item.href}
                 href={item.href}
-                className="border-b border-line py-3 text-base font-medium text-ink"
+                className="border-b border-white/10 py-3 text-base font-medium text-paper"
                 onClick={close}
               >
                 {item.label}
@@ -125,11 +116,11 @@ export function Header() {
               className="mt-4 inline-flex min-h-11 items-center justify-center rounded-full bg-lime px-4 text-sm font-semibold text-ink"
               onClick={close}
             >
-              Pyydä ilmainen arvio
+              Ota rohkeasti yhteyttä
             </a>
             <button
               type="button"
-              className="mt-2 min-h-11 text-sm font-medium text-moss"
+              className="mt-2 min-h-11 text-sm font-medium text-paper/70"
               onClick={() => {
                 setOpen(false)
                 buttonRef.current?.focus()

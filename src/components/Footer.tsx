@@ -1,15 +1,15 @@
-import { contactEmail, contactPhone, navItems, serviceArea } from '../content'
+import { contactEmail, navItems, serviceArea } from '../content'
 import { Logo } from './Logo'
 
 const year = new Date().getFullYear()
 
 export function Footer() {
   return (
-    <footer className="border-t border-line bg-paper">
-      <div className="mx-auto grid w-full max-w-6xl gap-10 px-5 py-14 md:px-8 md:grid-cols-3">
+    <footer className="border-t border-white/10 text-paper">
+      <div className="mx-auto grid w-full max-w-6xl gap-10 px-5 py-14 md:grid-cols-3 md:px-8">
         <div>
-          <Logo />
-          <p className="mt-4 max-w-xs text-sm leading-relaxed text-moss">
+          <Logo tone="light" />
+          <p className="mt-4 max-w-xs text-sm leading-relaxed text-paper/75">
             Wikkivisio uudistaa olemassa olevia verkkosivuja tekoälyn avulla.
             Edullisesti, nopeasti ja asiakkaan toiveet huomioiden.
           </p>
@@ -19,7 +19,7 @@ export function Footer() {
           <ul className="mt-3 space-y-2">
             {navItems.map((item) => (
               <li key={item.href}>
-                <a href={item.href} className="text-sm text-moss hover:text-ink">
+                <a href={item.href} className="text-sm text-paper/75 hover:text-lime">
                   {item.label}
                 </a>
               </li>
@@ -28,36 +28,21 @@ export function Footer() {
         </nav>
         <div>
           <p className="text-sm font-semibold">Yhteystiedot</p>
-          <ul className="mt-3 space-y-2 text-sm text-moss">
+          <ul className="mt-3 space-y-2 text-sm text-paper/75">
             <li>
-              <a className="hover:text-ink" href={`mailto:${contactEmail}`}>
+              <a className="hover:text-lime" href={`mailto:${contactEmail}`}>
                 {contactEmail}
-              </a>
-            </li>
-            <li>
-              <a className="hover:text-ink" href={`tel:${contactPhone.tel}`}>
-                {contactPhone.display}
-              </a>
-            </li>
-            <li>
-              <a
-                className="hover:text-ink"
-                href={`https://wa.me/${contactPhone.whatsapp}`}
-              >
-                WhatsApp
               </a>
             </li>
             <li>{serviceArea}</li>
           </ul>
-          <p className="mt-3 text-sm leading-relaxed text-moss">
-            Uudistus hoituu etänä koko Suomessa.
+          <p className="mt-3 text-sm leading-relaxed text-paper/75">
+            Työ hoituu etänä koko Suomessa.
           </p>
         </div>
       </div>
-      <div className="border-t border-line">
-        <p className="mx-auto w-full max-w-6xl px-5 py-5 text-sm text-moss md:px-8">
-          © {year} Wikkivisio
-        </p>
+      <div className="border-t border-white/10">
+        <p className="mx-auto w-full max-w-6xl px-5 py-5 text-sm text-paper/60 md:px-8">© {year} Wikkivisio</p>
       </div>
     </footer>
   )

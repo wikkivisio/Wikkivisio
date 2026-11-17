@@ -6,9 +6,9 @@ type LogoProps = {
 }
 
 export function Logo({ tone = 'dark', className }: LogoProps) {
-  const mark = tone === 'light' ? '#def56b' : '#0e261f'
-  const glyph = tone === 'light' ? '#0e261f' : '#def56b'
-  const word = tone === 'light' ? '#f4f0e6' : '#14241e'
+  const mark = tone === 'light' ? '#f2b705' : '#111111'
+  const glyph = tone === 'light' ? '#111111' : '#f2b705'
+  const word = tone === 'light' ? '#f6f3ec' : '#141414'
 
   return (
     <span className={`inline-flex items-center gap-2.5 ${className ?? ''}`}>

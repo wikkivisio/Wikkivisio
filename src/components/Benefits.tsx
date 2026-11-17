@@ -35,22 +35,22 @@ const icons: Record<(typeof benefits)[number]['id'], ReactNode> = {
 
 export function Benefits() {
   return (
-    <section id="hyodyt" className="scroll-mt-24 border-t border-line bg-sand/70 py-20 md:py-28" aria-labelledby="hyodyt-otsikko">
+    <section id="hyodyt" className="scroll-mt-24 border-t border-white/10 py-20 text-paper md:py-28" aria-labelledby="hyodyt-otsikko">
       <div className="mx-auto grid w-full max-w-6xl gap-10 px-5 md:px-8 lg:grid-cols-12 lg:gap-16">
         <div className="lg:sticky lg:top-28 lg:col-span-4 lg:self-start">
           <SectionHeading id="hyodyt-otsikko" eyebrow="Hyödyt" title="Pieni hinta, napakka työ, sinun ehtosi.">
             Sivua ei rakenneta tyhjästä eikä julkaista sinulta kysymättä.
           </SectionHeading>
         </div>
-        <ul className="divide-y divide-line border-y border-line lg:col-span-8">
+        <ul className="divide-y divide-white/15 border-y border-white/15 lg:col-span-8">
           {benefits.map((benefit) => (
             <li key={benefit.id} className="grid gap-3 py-7 sm:grid-cols-[auto_1fr] sm:gap-5">
-              <span className="text-canopy">{icons[benefit.id]}</span>
+              <span className="text-lime">{icons[benefit.id]}</span>
               <div>
                 <h3 className="font-display text-[1.7rem] leading-tight font-medium tracking-[-0.02em]">
                   {benefit.title}
                 </h3>
-                <p className="mt-2 max-w-xl text-[15.5px] leading-relaxed text-moss">{benefit.body}</p>
+                <p className="mt-2 max-w-xl text-[15.5px] leading-relaxed text-paper/75">{benefit.body}</p>
               </div>
             </li>
           ))}

@@ -8,7 +8,7 @@ export function BeforeAfter() {
   return (
     <section
       id="esimerkki"
-      className="on-dark scroll-mt-24 bg-spruce py-20 text-paper md:py-28"
+      className="on-dark scroll-mt-24 bg-black/40 py-20 text-paper md:py-28"
       aria-labelledby="esimerkki-otsikko"
     >
       <div className="mx-auto w-full max-w-6xl px-5 md:px-8">

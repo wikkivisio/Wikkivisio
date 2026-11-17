@@ -76,7 +76,7 @@ export function OldSite() {
 const newPoints = [
   ['Palvelu', 'Lyhyt kuvaus ilman turhaa kiertelyä.'],
   ['Aukiolo', 'Olennainen tieto löytyy heti.'],
-  ['Yhteys', 'Selkeä polku soittoon tai lomakkeelle.'],
+  ['Yhteys', 'Selkeä polku lomakkeelle.'],
 ] as const
 
 export function NewSite() {

@@ -2,7 +2,7 @@ export const navItems = [
   { href: '#toiminta', label: 'Miten se toimii' },
   { href: '#hyodyt', label: 'Hyödyt' },
   { href: '#esimerkki', label: 'Esimerkki' },
-  { href: '#hinnat', label: 'Esimerkkihinnat' },
+  { href: '#hinnat', label: 'Hinnat' },
   { href: '#kysymykset', label: 'Kysymykset' },
   { href: '#yhteys', label: 'Yhteys' },
 ] as const
@@ -75,39 +75,49 @@ export const benefits = [
 
 export const packages = [
   {
-    name: 'Kevyt ilme',
+    name: 'Perus',
     price: '590 €',
-    fit: 'Suppea sivu, jossa riittää ilmeen ja asettelun päivitys.',
+    prefix: '',
+    compareAt: '',
+    badge: '',
+    fit: 'Vanhan sivun uudistus samalla sisällöllä.',
     points: [
-      'Yhden näkymän tai hyvin pienen sivun ilme',
-      'Selkeämpi asettelu ja typografia',
-      'Mobiiliystävällinen näkymä',
-      'Yksi kommenttikierros',
+      'Vanhan sivun uudistus samalla sisällöllä',
+      'Ei sisältömuutoksia',
+      'Mobiiliystävällinen',
+      'Perus-SEO',
     ],
   },
   {
-    name: 'Sivustouudistus',
-    price: '1\u00a0290 €',
-    fit: 'Muutaman sivun kokonaisuus pienelle toimijalle.',
+    name: 'Perus + yhteydenotto',
+    price: '792 €',
+    prefix: '',
+    compareAt: '990 €',
+    badge: '−20 % 31.12.2026 asti',
+    fit: 'Peruspaketti ja lomake, joka vie viestit suoraan sähköpostiisi.',
     points: [
-      'Muutaman sivun kokonaisuus',
-      'Navigaatio ja rakenne selkeäksi',
-      'Tekstien jäsentely yhdessä',
-      'Kaksi kommenttikierrosta',
+      'Kaikki Perus-paketista',
+      'Yhteydenotto- tai tilauslomake suoraan sähköpostiisi',
+      'Kaksi muutoskierrosta',
     ],
   },
   {
-    name: 'Laajempi kokonaisuus',
-    price: '2\u00a0490 €',
-    fit: 'Pidempi sivu, jossa on enemmän sisältöä ja yhteydenottopolku.',
+    name: 'Laaja',
+    price: '1\u00a0900 €',
+    prefix: 'alkaen',
+    compareAt: '',
+    badge: '',
+    fit: 'Sisältö mukaan, etusija jonossa ja nopein toimitus.',
     points: [
-      'Useampi sivu ja pidempi sisältö',
-      'Yhteydenottolomake ja selkeä polku',
-      'Hakukoneoptimoinnin perusasiat',
-      'Kaksi kommenttikierrosta',
+      'Edellisten pakettien lisäksi',
+      'Sisällön suunnittelu, avustus ja muokkaus toiveidesi mukaan',
+      'Etusija työjonossa',
+      'Nopein toimitus',
     ],
   },
 ] as const
+
+export const extraHourly = '75 €/h'
 
 export const faqs = [
   {
@@ -140,21 +150,15 @@ export const faqs = [
   },
   {
     q: 'Ovatko sivulla näkyvät hinnat voimassa?',
-    a: 'Eivät. Hinnat-osiossa näkyvät luvut ovat esimerkkihintoja. Ne havainnollistavat suuruusluokkaa, eivät ole hinnasto eivätkä tarjous. Oma hinta vahvistetaan arviossa.',
+    a: 'Kyllä. Hinnat ovat arvonlisäverottomia (alv 0 %). Laaja-paketti alkaa 1 900 eurosta, koska laajuus katsotaan sivun mukaan. Perus + yhteydenotto maksaa nyt 792 €, ja tämä hinta on voimassa 31.12.2026 asti. Sen jälkeen hinta on 990 €. Lisätyö on 75 €/h.',
+  },
+  {
+    q: 'Mistä päin palvelette?',
+    a: 'Porista koko Suomeen. Työ hoituu etänä, joten sijaintisi ei rajoita uudistusta.',
   },
 ] as const
 
 export const contactEmail = 'wikkivisio@gmail.com'
 
-/**
- * Ainoa paikka puhelinnumerolle. tel:- ja WhatsApp-linkit kootaan tästä.
- * display on sivulla näkyvä muoto.
- */
-export const contactPhone = {
-  display: '+358 41 540 2830',
-  tel: '+358415402830',
-  whatsapp: '358415402830',
-} as const
-
-/** Palvelu kattaa koko Suomen ja hoituu etänä. */
-export const serviceArea = 'Koko Suomi'
+/** Palvelu lähtee Porista ja hoituu etänä koko Suomessa. */
+export const serviceArea = 'Porista koko Suomeen'
