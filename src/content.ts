@@ -146,9 +146,18 @@ export const faqs = [
 
 export const contactEmail = 'wikkivisio@gmail.com'
 
-/** Puhelin ja alue eivät ole vielä oikeita yhteystietoja. */
+/**
+ * Ainoa paikka puhelinnumerolle. tel:- ja WhatsApp-linkit kootaan tästä.
+ * display on sivulla näkyvä muoto.
+ */
+export const contactPhone = {
+  display: '+358 41 540 2830',
+  tel: '+358415402830',
+  whatsapp: '358415402830',
+} as const
+
+/** Alue ei ole vielä vahvistettu yhteystieto. */
 export const placeholders = {
-  phone: '+358 40 000 0000',
   area: 'Suomi',
-  note: 'Puhelin ja alue ovat paikkamerkkejä. Vaihda ne ennen julkaisua.',
+  note: 'Alue on paikkamerkki. Vaihda se ennen julkaisua.',
 } as const

@@ -1,4 +1,4 @@
-import { contactEmail, navItems, placeholders } from '../content'
+import { contactEmail, contactPhone, navItems, placeholders } from '../content'
 import { Logo } from './Logo'
 
 const year = new Date().getFullYear()
@@ -34,9 +34,18 @@ export function Footer() {
                 {contactEmail}
               </a>
             </li>
-            <li data-placeholder="true">
-              {placeholders.phone}{' '}
-              <span className="text-clay">· paikkamerkki</span>
+            <li>
+              <a className="hover:text-ink" href={`tel:${contactPhone.tel}`}>
+                {contactPhone.display}
+              </a>
+            </li>
+            <li>
+              <a
+                className="hover:text-ink"
+                href={`https://wa.me/${contactPhone.whatsapp}`}
+              >
+                WhatsApp
+              </a>
             </li>
             <li data-placeholder="true">
               {placeholders.area}{' '}

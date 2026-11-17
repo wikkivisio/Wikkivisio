@@ -9,6 +9,7 @@ export const WEB3FORMS_ENDPOINT = 'https://api.web3forms.com/submit'
 export const WEB3FORMS_KEY_PLACEHOLDER = 'PAIKKAMERKKI_VAIHDA_VITE_WEB3FORMS_KEY'
 
 export const WEB3FORMS_SUBJECT = 'Uusi yhteydenotto Wikkivisio-sivulta'
+export const WEB3FORMS_CALLBACK_SUBJECT = 'Soittopyyntö Wikkivisio-sivulta'
 export const WEB3FORMS_FROM_NAME = 'Wikkivisio'
 
 export function web3formsAccessKey() {
@@ -29,10 +30,12 @@ export type Web3FormsPayload = {
   from_name: string
   botcheck: boolean
   name: string
-  email: string
-  phone: string
-  sivusto: string
-  toiveet: string
+  email?: string
+  phone?: string
+  sivusto?: string
+  toiveet?: string
+  'Toivottu yhteydenottotapa'?: string
+  'Paras aika soittaa'?: string
 }
 
 type Web3FormsResponse = {
