@@ -1,3 +1,4 @@
+import { campaignNote } from './content'
 import { BeforeAfter } from './components/BeforeAfter'
 import { Benefits } from './components/Benefits'
 import { Contact } from './components/Contact'
@@ -18,6 +19,12 @@ export default function App() {
       </a>
       <Header />
       <main id="sisalto" tabIndex={-1} className="relative z-10 outline-none">
+        <a
+          href="#hinnat"
+          className="block bg-lime px-5 py-3 text-center text-sm leading-snug font-semibold text-ink hover:bg-lime-deep md:text-[15px]"
+        >
+          {campaignNote}
+        </a>
         <Hero />
         <Steps />
         <Benefits />

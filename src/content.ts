@@ -73,13 +73,16 @@ export const benefits = [
   },
 ] as const
 
+export const campaignNote =
+  'Kampanja: kaikki paketit −50 %, kun tilaat viimeistään 31.1.2027. Hinnat sis. ALV:n.'
+
 export const packages = [
   {
     name: 'Perus',
-    price: '590 €',
+    price: '295 €',
     prefix: '',
-    compareAt: '',
-    badge: '',
+    compareAt: '590 €',
+    badge: '−50 %',
     fit: 'Vanhan sivun uudistus samalla sisällöllä.',
     points: [
       'Vanhan sivun uudistus samalla sisällöllä',
@@ -90,10 +93,10 @@ export const packages = [
   },
   {
     name: 'Perus + yhteydenotto',
-    price: '792 €',
+    price: '495 €',
     prefix: '',
     compareAt: '990 €',
-    badge: '−20 % 31.12.2026 asti',
+    badge: '−50 %',
     fit: 'Peruspaketti ja lomake, joka vie viestit suoraan sähköpostiisi.',
     points: [
       'Kaikki Perus-paketista',
@@ -103,10 +106,10 @@ export const packages = [
   },
   {
     name: 'Laaja',
-    price: '1\u00a0900 €',
+    price: '950 €',
     prefix: 'alkaen',
-    compareAt: '',
-    badge: '',
+    compareAt: 'alkaen 1\u00a0900 €',
+    badge: '−50 %',
     fit: 'Sisältö mukaan, etusija jonossa ja nopein toimitus.',
     points: [
       'Edellisten pakettien lisäksi',
@@ -150,7 +153,7 @@ export const faqs = [
   },
   {
     q: 'Ovatko sivulla näkyvät hinnat voimassa?',
-    a: 'Kyllä. Hinnat ovat arvonlisäverottomia (alv 0 %). Laaja-paketti alkaa 1 900 eurosta, koska laajuus katsotaan sivun mukaan. Perus + yhteydenotto maksaa nyt 792 €, ja tämä hinta on voimassa 31.12.2026 asti. Sen jälkeen hinta on 990 €. Lisätyö on 75 €/h.',
+    a: 'Kyllä. Hinnat sisältävät arvonlisäveron. Kun tilaat viimeistään 31.1.2027, kaikki paketit ovat −50 %: Perus 295 € (normaalisti 590 €), Perus + yhteydenotto 495 € (normaalisti 990 €) ja Laaja alkaen 950 € (normaalisti alkaen 1 900 €). Sen jälkeen hinnat ovat Perus 590 €, Perus + yhteydenotto 990 € ja Laaja alkaen 1 900 €. Laajan hinta tarkentuu sivun mukaan. Lisätyö on 75 €/h. Kaikki hinnat sis. ALV:n.',
   },
   {
     q: 'Mistä päin palvelette?',
